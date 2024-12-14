@@ -22,14 +22,20 @@
 
       <div class="card">
         <div class="card-title">Send Email</div>
-        <p style="color: #ffffff;">
+        <div style="color: #ffffff; font-size: 1rem;">
+          <p>
           You can put {giver} and {buddy} in the text.
+          </p>
+          <p>
           the {giver} is the reciever name and {buddy} is their buddy name.
+          </p>
+          <p>
           Also add \n for newline.
-        </p>
+          </p>
+        </div>
         <form class="email-form">
-          <input type="text" id="subject" placeholder="Your buddy is..." required />
-          <textarea id="body" placeholder="สวัสดี {giver}💕,\n บัดดี้ของเธอคือ {buddy}!\n ขอให้สนุกกับการเลือกของขวัญนะ💖✨" required></textarea>
+          <input type="text" id="subject" placeholder="Subject" required />
+          <textarea id="body" placeholder="example: สวัสดี {giver}💕,\n บัดดี้ของเธอคือ {buddy}!\n ขอให้สนุกกับการเลือกของขวัญนะ💖✨" required></textarea>
           <button type="submit" class="email-button">Send</button>
         </form>
       </div> 

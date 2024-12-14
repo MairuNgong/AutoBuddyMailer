@@ -134,7 +134,7 @@ body {
   background-color: #333;
   color: #ffffff;
   font-size: 1rem;
-  width: 90%; 
+  width: 100%; 
 }
 
 .email-form textarea {
