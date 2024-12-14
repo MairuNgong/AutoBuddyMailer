@@ -1,3 +1,5 @@
+const url = "http://127.0.0.1:8000/sent-emails"
+
 const AddItem=(event)=>{
 
   event.preventDefault()
@@ -29,17 +31,52 @@ const SendEmail = (event) => {
     alert("The participant list is empty!");
   } 
   else {
-    const participants = Array.from(participantList.children).map((item) => {
-      const name = item.childNodes[0].textContent.trim();
-      const email = item.querySelector("span").textContent.trim();
-      return { name, email };
-    });
+    const data = {
+      participants: Array.from(participantList.children).reduce((acc, item) => {
+        const name = item.childNodes[0].textContent.trim();
+        const email = item.querySelector("span").textContent.trim();
+        acc[name] = email;
+        return acc;
+      }, {}),
+      subject: subject,
+      template: body,
+    };
 
-    for (const item of participants) {
-      console.log(`Name: ${item.name}, Email: ${item.email}`);
-    }
-    console.log(subject)
-    console.log(body)
+    const defaultData = {
+      participants: {
+        "John": "john@example.ac.th",
+        "Ken": "ken@example.ac.th",
+        "Alice": "alice@example.ac.th",
+        "Snow": "snow@example.ac.th",
+        "Milli": "milli@example.ac.th"
+      },
+      subject: "Test",
+      template: "Test template"
+    };
 
+    console.log(JSON.stringify(defaultData))
+    Postdata(url,defaultData)
   }
 };
+
+
+async function Postdata(url,data) {
+  try{
+    const response = await fetch(url,{
+      mode: 'no-cors',
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(data),
+    })
+
+    if (!response.ok){
+      
+      throw new Error(`Error : ${response.status}`)
+    }
+    const responseData = await response.json()
+    console.log("Response data:", responseData)
+  }
+  catch(error){
+    console.error("Error", error)
+  }
+}
