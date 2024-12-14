@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Buddy Mailer</title>
+    <meta name="viewport" content="width=deivce-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+  </head>
+  <body>
+    <div class="title">Buddy Mailer</div>
+      <div class="card">
+        <h1 class="card-title">Participants</h1>
+        <ul class="card-list">
+          <li >John Doe <span>example@kmitl.ac.th</span><button>x</button></li>
+        <form class="card-form">
+          <input type="text" id="name" placeholder="Name" required>
+          <input type="email" id="email" placeholder="Email" required>
+          <button type="submit">Add</button>
+        </form>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Send Email</div>
+        <p style="color: #ffffff;">
+          You can put {giver} and {buddy} in the text.
+          the {giver} is the reciever name and {buddy} is their buddy name.
+          Also add \n for newline.
+        </p>
+        <form class="email-form">
+          <input type="text" id="subject" placeholder="Your buddy is..." required />
+          <textarea id="body" placeholder="สวัสดี {giver}💕,\n บัดดี้ของเธอคือ {buddy}!\n ขอให้สนุกกับการเลือกของขวัญนะ💖✨" required></textarea>
+          <button type="submit" class="email-button">Send</button>
+        </form>
+      </div> 
+
+    <footer>
+      <p>© 2024 <a href="https://github.com/MairuNgong" target="_blank">MairuNgong</a></p>
+    </footer>
+  </body>
+</html>
