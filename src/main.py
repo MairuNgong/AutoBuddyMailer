@@ -1,4 +1,5 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from typing import Dict
 from pydantic import BaseModel, Field
 import uvicorn
@@ -45,6 +46,15 @@ def assign_buddies(participants):
         if all(name != buddy for name, buddy in zip(names, shuffled)):
             break
     return dict(zip(names, shuffled))
+
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  
+    allow_credentials=True,
+    allow_methods=["*"], 
+    allow_headers=["*"],  
+)
 
 @app.post("/sent-emails")
 def sent_emails(request: MessageRequest):

@@ -42,20 +42,7 @@ const SendEmail = (event) => {
       template: body,
     };
 
-    const defaultData = {
-      participants: {
-        "John": "john@example.ac.th",
-        "Ken": "ken@example.ac.th",
-        "Alice": "alice@example.ac.th",
-        "Snow": "snow@example.ac.th",
-        "Milli": "milli@example.ac.th"
-      },
-      subject: "Test",
-      template: "Test template"
-    };
-
-    console.log(JSON.stringify(defaultData))
-    Postdata(url,defaultData)
+    Postdata(url,data)
   }
 };
 
@@ -63,7 +50,6 @@ const SendEmail = (event) => {
 async function Postdata(url,data) {
   try{
     const response = await fetch(url,{
-      mode: 'no-cors',
       method: "POST",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify(data),
@@ -73,10 +59,13 @@ async function Postdata(url,data) {
       
       throw new Error(`Error : ${response.status}`)
     }
+
     const responseData = await response.json()
     console.log("Response data:", responseData)
+    alert("Email sent successfully")
   }
   catch(error){
     console.error("Error", error)
+    alert(`Error: ${error}`)
   }
 }
