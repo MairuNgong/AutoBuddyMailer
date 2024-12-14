@@ -11,12 +11,11 @@
     <div class="title">Buddy Mailer</div>
       <div class="card">
         <h1 class="card-title">Participants</h1>
-        <ul class="card-list">
-          <li >John Doe <span>example@kmitl.ac.th</span><button>x</button></li>
-        <form class="card-form">
+        <ul class="card-list" id="participants"></ul>
+        <form class="card-form" onsubmit="AddItem(event)">
           <input type="text" id="name" placeholder="Name" required>
           <input type="email" id="email" placeholder="Email" required>
-          <button type="submit">Add</button>
+          <button type="submit" >Add</button>
         </form>
       </div>
 
@@ -33,13 +32,13 @@
           Also add \n for newline.
           </p>
         </div>
-        <form class="email-form">
+        <form class="email-form" onsubmit="SendEmail(event)">
           <input type="text" id="subject" placeholder="Subject" required />
           <textarea id="body" placeholder="example: สวัสดี {giver}💕,\n บัดดี้ของเธอคือ {buddy}!\n ขอให้สนุกกับการเลือกของขวัญนะ💖✨" required></textarea>
           <button type="submit" class="email-button">Send</button>
         </form>
       </div> 
-
+    
     <footer>
       <p>© 2024 <a href="https://github.com/MairuNgong" target="_blank">MairuNgong</a></p>
     </footer>

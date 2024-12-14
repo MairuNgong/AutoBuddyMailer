@@ -34,14 +34,8 @@ class MessageRequest(BaseModel):
         },
         description="Default list of participants"
     )
-    template: str  = Field(
-         default=(
-            "สวัสดี {giver}💕,\n"
-            "บัดดี้ของเธอคือ {buddy}!\n"
-            "ขอให้สนุกกับการเลือกของขวัญนะ💖✨"
-        ),
-        description="Default message template"
-    )
+    subject : str
+    template: str
 
 def assign_buddies(participants):
     names = list(participants.keys())
@@ -67,7 +61,7 @@ def sent_emails(request: MessageRequest):
                   message = MIMEMultipart()
                   message["From"] = SENDER_EMAIL
                   message["To"] = receiver_email
-                  message["Subject"] = "บัดดี้ของเธอคือ...(Real)"
+                  message["Subject"] = request.subject
 
                   body = request.template.format(giver=giver, buddy=buddy)
                   message.attach(MIMEText(body, "plain"))
