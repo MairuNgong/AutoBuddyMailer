@@ -21,7 +21,7 @@ app = FastAPI()
 
 
 if __name__ == "__main__" :
-    uvicorn.run("main:app", host="127.0.0.1", port=8000, log_level="info")
+    uvicorn.run("app:app", host="127.0.0.1", port=8000, log_level="info")
 
 # Define the request model
 class MessageRequest(BaseModel):
@@ -40,6 +40,8 @@ class MessageRequest(BaseModel):
 
 def assign_buddies(participants):
     names = list(participants.keys())
+    if len(names) == 1 :
+      return dict(zip(names,names))
     shuffled = names[:]
     while True:
         random.shuffle(shuffled)
@@ -48,13 +50,19 @@ def assign_buddies(participants):
     return dict(zip(names, shuffled))
 
 
+origins = [
+    "http://127.0.0.1:5500", 
+    "http://127.0.0.1:8000", 
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  
+    allow_origins=origins,  
     allow_credentials=True,
     allow_methods=["*"], 
     allow_headers=["*"],  
 )
+
 
 @app.post("/sent-emails")
 def sent_emails(request: MessageRequest):
