@@ -1,4 +1,4 @@
-const url = "http://127.0.0.1:8000/sent-emails"
+const url = "http://localhost:5000/sent-emails"
 
 const AddItem=(event)=>{
 
