@@ -4,15 +4,24 @@ services:
       context: .
       dockerfile: Dockerfile.backend
     ports:
-      - "5000:5000"
+      - "8000:8000"
     volumes:
       - ./backend:/app
+    networks:
+      - app-network
   
   frontend:
     build: 
       context: .
       dockerfile: Dockerfile.frontend
     ports:
-      - "8080:80"
+      - "8080:8080"
     volumes:
       - ./frontend:/usr/share/nginx/html
+
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
